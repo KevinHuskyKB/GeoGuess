@@ -1,0 +1,805 @@
+html{
+    min-height: 100%;
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(59, 59, 228);
+}
+
+.soundToggle{
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.soundToggle:hover{
+    background-color: rgb(202, 202, 202);
+}
+
+.soundToggle:active{
+    background-color: rgb(190, 190, 190);
+}
+
+.title{
+    font-size: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.mainMenu p{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.mainMenu{
+    text-align: center;
+    color: white;
+}
+
+.gameMode{
+    width: 175px;
+    height: 50px;
+
+    margin: 0 7px;
+
+    font-size: 25px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.gameMode:hover{
+    background-color: rgb(202, 202, 202);
+}
+
+.gameMode:active{
+    background-color: rgb(190, 190, 190);
+}
+
+.flagsTitle,
+.capitalsTitle,
+.mapsTitle{
+    font-size: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.regionSelection p,
+.capitalSelection p,
+.mapsSelection p{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.region,
+.capital,
+.map,
+.navigationButton,
+.gameScreen button,
+.gameOverScreen button{
+    min-width: 175px;
+    height: 50px;
+    padding: 0 20px;
+
+    margin-right: 0;
+
+    font-size: 25px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.regionSelection,
+.capitalSelection,
+.mapsSelection,
+.questionCountSelection,
+.difficultySelection,
+.gameScreen,
+.gameOverScreen
+{
+    display: none; 
+    color: white;
+    text-align: center;
+}
+
+.gameScreen{
+    color: white;
+    text-align: center;
+}
+
+.gameScreen{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.gameScreen p{
+    display: inline-block;
+    margin: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.gameOverScreen{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.difficultySelection{
+    color: white;
+    text-align: center;
+}
+
+.difficultySelection h1,
+.questionCountSelection h1{
+    font-size: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.difficultyButtons,
+.questionCountButtons{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.difficulty,
+.questionCount{
+    min-width: 175px;
+    height: 50px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.difficulty:hover,
+.questionCount:hover{
+    background-color: rgb(202, 202, 202);
+}
+
+.difficulty:active,
+.questionCount:active{
+    background-color: rgb(190, 190, 190);
+}
+
+.gameOverScreen p{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.gameStats{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.countryImagePlaceholder{
+    display: grid;
+    place-items: center;
+    width: min(100%, 450px);
+    max-width: 100%;
+    min-height: clamp(160px, 28vw, 250px);
+    margin: 1rem auto;
+    border: 3px dashed rgba(255, 255, 255, 0.75);
+    border-radius: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: clamp(5rem, 15vw, 8rem);
+    overflow: hidden;
+}
+
+.countryImagePlaceholder img{
+    display: block;
+    max-width: 100%;
+    max-height: min(250px, 40vh);
+    object-fit: contain;
+}
+
+.countryImagePlaceholder .countryFlag{
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.countryImagePlaceholder.flagImageQuestion{
+    width: fit-content;
+    min-height: 0;
+    max-width: 100%;
+}
+
+.countryImagePlaceholder.flagImageQuestion .countryFlag{
+    max-width: min(100%, 640px);
+    max-height: min(250px, 40vh);
+}
+
+.countryImagePlaceholder .countryMap{
+    width: min(100%, 400px);
+    max-width: 100%;
+    height: min(250px, 40vh);
+}
+
+.countryImagePlaceholder .countryMap path{
+    fill: rgba(255, 255, 255, 0.85);
+    stroke: rgb(59, 59, 228);
+    stroke-width: 0.3;
+    vector-effect: non-scaling-stroke;
+}
+
+.gameScreen h2{
+    font-size: 2rem;
+    overflow-wrap: anywhere;
+}
+
+.gameScreen button{
+    margin: 5px;
+}
+
+.answerButtons{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: min(100%, 550px);
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.answerButtons .answer{
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+    height: auto;
+    margin: 0;
+    padding: 10px 16px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.2;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameScreen .answer.correct{
+    background-color: #43a047;
+    color: white;
+    animation: answer-pop 300ms ease-out;
+}
+
+.gameScreen .answer.wrong{
+    background-color: #e53935;
+    color: white;
+    animation: answer-shake 350ms ease-in-out;
+}
+
+.gameScreen .answer.correct.timedOut{
+    animation: answer-pulse 500ms ease-in-out;
+}
+
+@keyframes answer-pop{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+@keyframes answer-shake{
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-5px); }
+}
+
+@keyframes answer-pulse{
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+}
+
+/* Final UI polish */
+:root{
+    --surface: rgba(20, 30, 145, 0.24);
+    --surface-border: rgba(255, 255, 255, 0.2);
+    --button-shadow: 0 5px 0 rgba(19, 24, 114, 0.24);
+}
+
+body{
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    background: linear-gradient(145deg, rgb(67, 67, 235), rgb(44, 44, 190));
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+.mainMenu,
+.regionSelection,
+.capitalSelection,
+.mapsSelection,
+.questionCountSelection,
+.difficultySelection,
+.gameScreen,
+.gameOverScreen{
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--surface-border);
+    border-radius: 24px;
+    background: var(--surface);
+    box-shadow: 0 16px 36px rgba(20, 25, 110, 0.2);
+    animation: screen-enter 280ms ease-out;
+}
+
+.mainMenu{
+    max-width: 700px;
+    margin: clamp(2rem, 10vh, 6rem) auto;
+    padding: clamp(1.75rem, 5vw, 3rem);
+}
+
+.regionSelection,
+.capitalSelection,
+.mapsSelection,
+.questionCountSelection,
+.difficultySelection{
+    max-width: 960px;
+    margin: clamp(1.5rem, 6vh, 4rem) auto;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.difficultySelection,
+.questionCountSelection{
+    max-width: 760px;
+}
+
+.gameScreen{
+    margin: clamp(1rem, 4vh, 3rem) auto;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.gameOverScreen{
+    width: 100%;
+    min-width: 0;
+    max-width: 620px;
+    margin: clamp(1.5rem, 8vh, 5rem) auto;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.title,
+.flagsTitle,
+.capitalsTitle,
+.mapsTitle,
+.difficultySelection h1,
+.questionCountSelection h1,
+#selectedRegion,
+#gameOverTitle{
+    margin-top: 0;
+    letter-spacing: -0.04em;
+}
+
+.mainMenu p,
+.regionSelection p,
+.capitalSelection p,
+.mapsSelection p,
+.questionCountSelection p{
+    margin: 0.5rem 0 1.5rem;
+}
+
+.gameMode,
+.region,
+.capital,
+.map,
+.navigationButton,
+.difficulty,
+.questionCount,
+.gameScreen button,
+.gameOverScreen button{
+    max-width: 100%;
+    font-weight: 700;
+    box-shadow: var(--button-shadow);
+    transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.gameMode:hover,
+.region:hover,
+.capital:hover,
+.map:hover,
+.navigationButton:hover,
+.difficulty:hover,
+.questionCount:hover,
+.gameScreen button:not(:disabled):hover,
+.gameOverScreen button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0 rgba(19, 24, 114, 0.2);
+}
+
+.gameMode:active,
+.region:active,
+.capital:active,
+.map:active,
+.navigationButton:active,
+.difficulty:active,
+.questionCount:active,
+.gameScreen button:not(:disabled):active,
+.gameOverScreen button:active{
+    transform: translateY(1px);
+    box-shadow: 0 2px 0 rgba(19, 24, 114, 0.2);
+}
+
+button:focus-visible{
+    outline: 3px solid rgba(255, 255, 255, 0.9);
+    outline-offset: 3px;
+}
+
+button:disabled{
+    cursor: not-allowed;
+}
+
+.gameStats{
+    gap: 8px;
+    margin: 1rem auto 0.5rem;
+}
+
+.gameScreen p{
+    margin: 0.25rem;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.countryImagePlaceholder{
+    background: rgba(15, 21, 120, 0.16);
+    box-shadow: inset 0 0 24px rgba(15, 21, 120, 0.14);
+}
+
+.answerButtons{
+    gap: 12px;
+}
+
+.gameOverScreen p{
+    margin: 0.7rem 0;
+    overflow-wrap: anywhere;
+}
+
+@keyframes screen-enter{
+    from{
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .gameScreen .answer.correct,
+    .gameScreen .answer.wrong,
+    .gameScreen .answer.correct.timedOut,
+    .mainMenu,
+    .regionSelection,
+    .capitalSelection,
+    .mapsSelection,
+    .questionCountSelection,
+    .difficultySelection,
+    .gameScreen,
+    .gameOverScreen,
+    button{
+        animation: none;
+        transition: none !important;
+    }
+}
+
+.regionButtons,
+.capitalButtons,
+.mapsButtons{
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.region:hover,
+.capital:hover,
+.map:hover,
+.navigationButton:hover,
+.gameScreen button:hover,
+.gameOverScreen button:hover{
+    background-color: rgb(202, 202, 202);
+}
+.region:active,
+.capital:active,
+.map:active,
+.navigationButton:active,
+.gameScreen button:active,
+.gameOverScreen button:active{
+    background-color: rgb(190, 190, 190);
+}
+
+/* Four buttons fill the first row; three wider buttons are centered below it. */
+.regionButtons .region:nth-child(-n + 4),
+.capitalButtons .capital:nth-child(-n + 4),
+.mapsButtons .map:nth-child(-n + 4){
+    grid-column: span 3;
+}
+
+.regionButtons .region:nth-child(n + 5),
+.capitalButtons .capital:nth-child(n + 5),
+.mapsButtons .map:nth-child(n + 5){
+    grid-column: span 4;
+    width: 100%;
+}
+
+.navigationButton{
+    margin-top: 20px;
+}
+
+@media (max-width: 780px){
+    *,
+    *::before,
+    *::after{
+        box-sizing: border-box;
+    }
+
+    body{
+        margin: 0;
+        padding: 12px;
+        overflow-x: hidden;
+    }
+
+    .soundToggle{
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 19px;
+    }
+
+    .mainMenu,
+    .regionSelection,
+    .capitalSelection,
+    .mapsSelection,
+    .questionCountSelection,
+    .difficultySelection,
+    .gameScreen,
+    .gameOverScreen{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .title,
+    .flagsTitle,
+    .capitalsTitle,
+    .mapsTitle,
+    .difficultySelection h1,
+    .questionCountSelection h1,
+    #selectedRegion,
+    #gameOverTitle{
+        margin: 0.75rem 48px 0.75rem 0;
+        font-size: clamp(1.8rem, 9vw, 2.5rem);
+        overflow-wrap: anywhere;
+    }
+
+    .mainMenu p,
+.regionSelection p,
+.capitalSelection p,
+.mapsSelection p,
+.questionCountSelection p{
+        margin: 0.75rem 0 1rem;
+        font-size: clamp(1.3rem, 6vw, 1.7rem);
+    }
+
+    .gameMode{
+        display: block;
+        width: min(100%, 340px);
+        height: auto;
+        min-height: 50px;
+        margin: 10px auto;
+        padding: 10px 14px;
+        font-size: clamp(1.1rem, 5vw, 1.35rem);
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    .regionButtons,
+    .capitalButtons,
+    .mapsButtons{
+        grid-template-columns: 1fr;
+        width: min(100%, 340px);
+        max-width: 340px;
+    }
+
+    .regionButtons .region:nth-child(n),
+    .capitalButtons .capital:nth-child(n),
+    .mapsButtons .map:nth-child(n){
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .region,
+    .capital,
+    .map,
+    .navigationButton,
+    .difficulty,
+    .questionCount,
+    .gameScreen button,
+    .gameOverScreen button{
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        min-height: 50px;
+        padding: 10px 14px;
+        font-size: clamp(1rem, 4.8vw, 1.25rem);
+        white-space: normal;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+
+    .navigationButton{
+        width: min(100%, 340px);
+        margin: 16px auto 0;
+    }
+
+    .difficultyButtons,
+    .questionCountButtons{
+        width: min(100%, 340px);
+        margin: 0 auto;
+        flex-direction: column;
+    }
+
+    .difficulty,
+    .questionCount{
+        font-size: clamp(1rem, 4.8vw, 1.2rem);
+    }
+
+    .gameScreen{
+        margin: 0 auto;
+    }
+
+    .gameScreen button{
+        display: block;
+        width: min(100%, 360px);
+        margin: 10px auto;
+    }
+
+    .gameStats{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: min(100%, 360px);
+        margin: 0 auto;
+        gap: 8px;
+    }
+
+    .gameScreen .gameStats p{
+        display: block;
+        min-width: 0;
+        margin: 0;
+        font-size: clamp(0.95rem, 4.2vw, 1.1rem);
+        overflow-wrap: anywhere;
+    }
+
+    .countryImagePlaceholder{
+        width: min(100%, 360px);
+        min-height: 180px;
+        margin: 0.75rem auto;
+        font-size: clamp(5rem, 28vw, 7rem);
+    }
+
+    .countryImagePlaceholder img,
+    .countryImagePlaceholder.flagImageQuestion .countryFlag{
+        max-height: 180px;
+    }
+
+    .countryImagePlaceholder.flagImageQuestion{
+        max-width: 100%;
+    }
+
+    .countryImagePlaceholder .countryMap{
+        width: min(100%, 320px);
+        height: 180px;
+    }
+
+    .gameScreen h2{
+        margin: 0.75rem 0;
+        font-size: clamp(1.3rem, 6vw, 1.75rem);
+        overflow-wrap: anywhere;
+    }
+
+    .answerButtons{
+        grid-template-columns: 1fr;
+        width: min(100%, 360px);
+    }
+
+    .answerButtons .answer{
+        margin: 0;
+    }
+
+    .gameOverScreen{
+        padding: 0 4px;
+    }
+
+    .gameOverScreen p{
+        margin: 0.75rem 0;
+        font-size: clamp(1.1rem, 5vw, 1.35rem);
+        overflow-wrap: anywhere;
+    }
+
+    .gameOverScreen button{
+        display: block;
+        width: min(100%, 340px);
+        margin: 10px auto;
+    }
+}
+
+@media (min-width: 781px) and (max-width: 980px){
+    .regionButtons,
+    .capitalButtons,
+    .mapsButtons{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: min(100%, 680px);
+    }
+
+    .regionButtons .region:nth-child(n),
+    .capitalButtons .capital:nth-child(n),
+    .mapsButtons .map:nth-child(n){
+        grid-column: auto;
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+@media (max-height: 640px){
+    .mainMenu,
+    .regionSelection,
+    .capitalSelection,
+    .mapsSelection,
+    .questionCountSelection,
+    .difficultySelection,
+    .gameScreen,
+    .gameOverScreen{
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .mainMenu,
+    .regionSelection,
+    .capitalSelection,
+    .mapsSelection,
+    .questionCountSelection,
+    .difficultySelection,
+    .gameOverScreen{
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
+    .countryImagePlaceholder{
+        min-height: min(160px, 30vh);
+    }
+
+    .countryImagePlaceholder img,
+    .countryImagePlaceholder.flagImageQuestion .countryFlag{
+        max-height: min(160px, 30vh);
+    }
+
+    .countryImagePlaceholder .countryMap{
+        height: min(160px, 30vh);
+    }
+}

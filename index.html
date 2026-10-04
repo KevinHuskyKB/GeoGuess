@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoGuess</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button type="button" id="soundToggle" class="soundToggle" aria-label="Mute game sounds" title="Mute game sounds">🔊</button>
+
+    <div class="mainMenu">
+        <h1 class="title">GeoGuess🌍</h1>
+
+        <p>What do you want to play?</p>
+
+        <button id="flagsBtn" class="gameMode">🚩Flags</button>
+        <button id="capitalsBtn" class="gameMode">🏛️Capitals</button>
+        <button id="mapsBtn" class="gameMode">🗺️Maps</button>
+    </div>
+
+    <div class="regionSelection">
+        <h1 class="flagsTitle">🚩Flags</h1>
+
+        <p>Choose a region!</p>
+
+        <div class="regionButtons">
+            <button class="region">Europe</button>
+            <button class="region">Africa</button>
+            <button class="region">South America</button>
+            <button class="region">Oceania</button>
+            <button class="region">Asia</button>
+            <button class="region">North America</button>
+            <button class="region">🌍ALL</button>
+        </div>
+        <button type="button" class="navigationButton backToMenuBtn">← Back</button>
+    </div>
+
+    <div class="capitalSelection">
+        <h1 class="capitalsTitle">🏛️Capitals</h1>
+
+        <p>Choose a Region!</p>
+
+        <div class="capitalButtons">
+            <button class="capital">Europe</button>
+            <button class="capital">Africa</button>
+            <button class="capital">South America</button>
+            <button class="capital">Oceania</button>
+            <button class="capital">Asia</button>
+            <button class="capital">North America</button>
+            <button class="capital">🌍ALL</button>
+        </div>
+        <button type="button" class="navigationButton backToMenuBtn">← Back</button>
+    </div>
+
+    <div class="mapsSelection">
+        <h1 class="mapsTitle">🗺️Maps</h1>
+
+        <p>Choose a Region!</p>
+
+        <div class="mapsButtons">
+            <button class="map">Europe</button>
+            <button class="map">Africa</button>
+            <button class="map">South America</button>
+            <button class="map">Oceania</button>
+            <button class="map">Asia</button>
+            <button class="map">North America</button>
+            <button class="map">🌍ALL</button>
+        </div>
+        <button type="button" class="navigationButton backToMenuBtn">← Back</button>
+    </div>
+
+    <div class="questionCountSelection">
+        <h1>How many questions?</h1>
+        <p id="availableCountryCount"></p>
+        <div class="questionCountButtons">
+            <button type="button" class="questionCount" data-count="10">10</button>
+            <button type="button" class="questionCount" data-count="25">25</button>
+            <button type="button" class="questionCount" data-count="50">50</button>
+            <button type="button" class="questionCount" data-count="100">100</button>
+            <button type="button" class="questionCount" data-count="200">200</button>
+            <button type="button" class="questionCount" data-count="all">ALL</button>
+        </div>
+    </div>
+
+    <div class="difficultySelection">
+        <h1>Choose a difficulty!</h1>
+        <div class="difficultyButtons">
+            <button type="button" class="difficulty" data-seconds="15" data-difficulty="Easy">Easy (15 seconds)</button>
+            <button type="button" class="difficulty" data-seconds="10" data-difficulty="Normal">Normal (10 seconds)</button>
+            <button type="button" class="difficulty" data-seconds="5" data-difficulty="Hard">Hard (5 seconds)</button>
+        </div>
+    </div>
+
+    <main class="gameScreen" aria-labelledby="questionTitle">
+        <h1 id="selectedRegion">Europe</h1>
+        <button type="button" id="quitGameBtn">← Quit Game</button>
+
+        <div class="gameStats" aria-label="Game statistics">
+            <p>Score: <span id="score">0</span></p>
+            <p>Streak: <span id="streak">0</span></p>
+            <p>Question: <span id="questionNumber">1</span>/<span id="questionTotal">10</span></p>
+            <p>Time: <span id="timer">10</span>s</p>
+        </div>
+
+        <div class="countryImagePlaceholder" role="img" aria-label="Country image will appear here">
+            Country image
+        </div>
+
+        <h2 id="questionTitle">Which country is this?</h2>
+        <div class="answerButtons">
+            <button type="button" class="answer">Answer 1</button>
+            <button type="button" class="answer">Answer 2</button>
+            <button type="button" class="answer">Answer 3</button>
+            <button type="button" class="answer">Answer 4</button>
+        </div>
+    </main>
+
+    <section class="gameOverScreen" aria-labelledby="gameOverTitle">
+        <h1 id="gameOverTitle">Game Over</h1>
+        <p>Score: <span id="finalScore">0</span>/<span id="finalScoreTotal">10</span></p>
+        <p>Accuracy: <span id="accuracy">0</span>%</p>
+        <p>Best streak: <span id="bestStreak">0</span></p>
+        <p>Difficulty: <span id="finalDifficulty">Normal</span></p>
+        <p>Game mode: <span id="finalGameMode">Flags</span></p>
+        <p>Region: <span id="finalRegion">Europe</span></p>
+        <p>High score: <span id="highScore">0</span>/<span id="highScoreTotal">10</span></p>
+
+        <button type="button" id="playAgainBtn">Play Again</button>
+        <button type="button" id="mainMenuBtn">Main Menu</button>
+    </section>
+
+    <audio id="correctSound" src="sounds/correct.wav" preload="auto"></audio>
+    <audio id="wrongSound" src="sounds/wrong.wav" preload="auto"></audio>
+    <audio id="timeoutSound" src="sounds/timeout.wav" preload="auto"></audio>
+    <audio id="gameOverSound" src="sounds/game-over.wav" preload="auto"></audio>
+
+    <script src="index.js"></script>
+</body>
+</html>
